@@ -39,7 +39,7 @@ class Upgrade:
     UbuntuPath = '/etc/lsb-release'
     openEulerPath = '/etc/openEuler-release'
     FromCloud = 0
-    SnappyVersion = '2.33.0'
+    SnappyVersion = '2.38.2'
     LogPathNew = '/home/cyberpanel/upgrade_logs'
     SoftUpgrade = 0
 
@@ -3612,6 +3612,12 @@ pm.max_spare_servers = 3
 
             command = 'chmod +x /usr/local/CyberCP/public/imunifyav/bin/execute.py'
             Upgrade.executioner(command, command, 1)
+
+        imfExecutePath = '/usr/local/CyberCP/public/imunify/bin/execute.py'
+        if os.path.exists(imfExecutePath):
+            command = f'chmod 755 {imfExecutePath}'
+            Upgrade.executioner(command, command, 0)
+
 
         Upgrade.installDNS_CyberPanelACMEFile()
 
